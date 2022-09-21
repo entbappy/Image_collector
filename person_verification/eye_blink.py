@@ -1,5 +1,6 @@
 import cv2  
-import time                          
+import time   
+import os                       
 import dlib                                    #for face and landmark detection
 from scipy.spatial import distance as dist     #for calculating dist b/w the eye landmarks
 from imutils import face_utils                 #to get the landmark ids of the left and right eyes ----you can do this manually too
@@ -18,9 +19,9 @@ class EyeBlinkVerification:
 
         #------Initializing the Models for Landmark and face Detection---------#
         self.detector = dlib.get_frontal_face_detector()
-        self.landmark_predict = dlib.shape_predictor('Model/shape_predictor_68_face_landmarks.dat')
+        self.landmark_predict = dlib.shape_predictor(os.path.join('model','shape_predictor_68_face_landmarks.dat'))
+       
 
-    
     #------function to calulate the EAR-----------#
     def calculate_EAR(self,eye) :
         #---calculate the verticle distances---#
@@ -57,6 +58,7 @@ class EyeBlinkVerification:
             img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
             #---detecting the faces---#
             faces = self.detector(img_gray)
+
             for face in faces :
                 #----landmark detection-----#
                 shape = self.landmark_predict(img_gray,face)

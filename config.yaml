@@ -1,0 +1,6 @@
+artifacts_config:
+  artifacts_dir: artifacts
+
+image_params:
+  number_of_images: 15
+  

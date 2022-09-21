@@ -1,4 +1,6 @@
 opencv-python
 # dlib   ## conda install -c conda-forge dlib
-# imutils
+imutils
 scipy
+PyYAML
+-e .
